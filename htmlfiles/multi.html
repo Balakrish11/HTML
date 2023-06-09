@@ -1,0 +1,35 @@
+<!--
+example for Multpilication table
+-->
+Enter multipilication number
+<input
+type="number"
+id="nummno"
+placeholder="0"
+oninput="nummno_oninput();"
+/>
+
+<div id="dvop">
+wait...
+</div>
+
+<script>
+function nummno_oninput(){
+var mno=nummno.value;
+mno=parseInt(mno);
+mno=isNaN(mno) ? 0 : mno;
+var i=0;
+var res="";
+
+for (i=1 ; i<21; i++) {
+res += i + 'x' + mno + '=' + (i * mno);
+res += '<br>';
+}
+
+dvop.innerHTML=res;
+
+}
+
+</script>
+
+

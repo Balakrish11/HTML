@@ -1,0 +1,358 @@
+<!--
+Electricity Bill
+-->
+
+<table border="1">
+<tr>
+<td>
+Consumer ID
+<td colspan="3">
+<input
+type='number'
+id='numcid'
+placeholder="0"
+style ="text-align:right;width:100%;"
+/>
+
+<tr>
+<td>
+Consume Previous Reading
+<td colspan="3">
+<input
+type='number'
+id='tbxcpr'
+placeholder="0"
+style ="text-align:right;width:100%;"
+/>
+
+<tr>
+<td>
+Consume Current Reading
+<td colspan="3">
+<input
+type='number'
+id='tbxccr'
+placeholder="0"
+style ="text-align:right;width:100%;"
+/>
+
+<tr>
+<td>
+Customer Categeries
+<td colspan="3" align="right">
+<select>
+<option value='agriculture'
+id= 'tbxa'>Agriculture
+<option value='domestic'
+id= 'tbxd'>Domestic
+<option value='commercial'
+id = 'tbxc'>Commercial
+</select>
+
+<br>
+<tr>
+<td>
+Consume Net Reading
+<td colspan="3" align="right">
+<input
+type='text'
+id='tbxcnr'
+placeholder="0"
+readonly="readonly"
+style ="text-align:right;"
+/>
+<tr>
+<td style="color:red">
+Units
+<td style="color:red">
+Consume Units
+<td style="color:red">
+Unit amount
+<td style="color:red">
+Total Amount 
+
+<tr>
+<td>
+000-100
+<td>
+<input
+type='text'
+id='tbxpuau100'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<td>
+<input
+type='text'
+id='tbxpuau100a'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<td>
+<input
+type='text'
+id='tbxpuau100t'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+
+
+<tr>
+<td>
+101-200
+<td>
+<input
+type='text'
+id='tbxpuau200'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<td>
+<input
+type='text'
+id='tbxpuau200a'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<td>
+<input
+type='text'
+id='tbxpuau200t'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+
+<tr>
+<td>
+201-400
+<td>
+<input
+type='text'
+id='tbxpuau400'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<td>
+<input
+type='text'
+id='tbxpuau400a'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<td>
+<input
+type='text'
+id='tbxpuau400t'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<tr>
+<td>
+401...
+<td>
+<input
+type='text'
+id='tbxpuaa400'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<td>
+<input
+type='text'
+id='tbxpuaa400a'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<td>
+<input
+type='text'
+id='tbxpuaa400t'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<tr>
+<td>
+Meter Charge
+<td colspan="3">
+<input 
+type='text'
+id='tbxmc'
+placeholder="0"
+style ="text-align:right;width:100%;"
+/>
+
+
+<tr>
+<td>
+Tax for
+<td>
+<input 
+type='text'
+id='tbxtaxp'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<td>
+<input 
+type='text'
+id='tbxtaxa'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<td>
+<input 
+type='text'
+id='tbxtaxtot'
+placeholder="0"
+style ="text-align:right;"
+/>
+
+<tr>
+<td>
+Net Pay
+<td colspan="3">
+<input 
+type='text'
+id='tbxnpay'
+placeholder="0"
+style ="text-align:right;width:100%;"
+/>
+
+<tr align="center">
+
+<td>
+<input
+type="button"
+value="Cancel"
+onclick="location.href='ebbill.html';"
+/>
+
+<td colspan="3">
+<input
+type="button"
+value="Find"
+onclick="btnfind_onclick();"
+/>
+
+</table>
+
+<script>
+function btnfind_onclick ( ) {
+
+var cpr=tbxcpr.value;
+var ccr=tbxccr.value;
+
+var cnr= ccr - cpr;
+tbxcnr.value=cnr;
+
+if(tbxcnr.value>0 && tbxcnr.value<=100){
+tbxpuau100.value=tbxcnr.value;
+}
+
+if(tbxcnr.value>100 && tbxcnr.value<=200){
+tbxpuau100.value=100;
+tbxpuau200.value=tbxcnr.value-100;
+}
+
+if(tbxcnr.value>200 && tbxcnr.value<=400){
+tbxpuau100.value=100;
+tbxpuau200.value=100;
+tbxpuau400.value=tbxcnr.value-200;
+}
+
+if(tbxcnr.value > 400)
+{
+tbxpuau100.value=100;
+tbxpuau200.value=100;
+tbxpuau400.value=200;
+tbxpuaa400.value=tbxcnr.value-400;
+}
+
+
+if(tbxa.selected){
+tbxpuau100a.value=0.25;
+tbxpuau200a.value=0.50;
+tbxpuau400a.value=1.50;
+tbxpuaa400a.value=2.00;
+}
+
+if(tbxd.selected){
+tbxpuau100a.value=0.50;
+tbxpuau200a.value=1.00;
+tbxpuau400a.value=3.00;
+tbxpuaa400a.value=6.00;
+}
+
+if(tbxc.selected){
+tbxpuau100a.value=1.00;
+tbxpuau200a.value=2.00;
+tbxpuau400a.value=6.00;
+tbxpuaa400a.value=10.00;
+}
+
+tbxpuau100t.value = tbxpuau100.value*tbxpuau100a.value;
+tbxpuau200t.value = tbxpuau200.value*tbxpuau200a.value;
+tbxpuau400t.value = tbxpuau400.value*tbxpuau400a.value;
+tbxpuaa400t.value = tbxpuaa400.value*tbxpuaa400a.value;
+
+if(tbxa.selected){
+tbxmc.value=12.50;
+}
+
+if(tbxd.selected){
+tbxmc.value=25.00;
+}
+
+if(tbxc.selected){
+tbxmc.value=200;
+}
+
+if(tbxa.selected)
+{
+tbxtaxp.value = 2.5;
+}
+
+if(tbxd.selected)
+{
+tbxtaxp.value = 5;
+}
+
+if(tbxc.selected)
+{
+tbxtaxp.value = 7.5;
+}
+
+tbxtaxa.value= tbxpuaa400t.value;
+tbxtaxp = parseFloat(tbxtaxp.value);
+tbxtaxa = parseFloat(tbxtaxa.value);
+
+
+tbxtaxtot.value =tbxtaxa*(tbxtaxp/100);
+tbxpuau100t= parseFloat(tbxpuau100t.value);
+tbxpuau200t= parseFloat(tbxpuau200t.value);
+tbxpuau400t= parseFloat(tbxpuau400t.value);
+tbxpuaa400t= parseFloat(tbxpuaa400t.value);
+
+tbxmc = parseFloat(tbxmc.value);
+tbxtaxtot = parseFloat(tbxtaxtot.value);
+
+tbxnpay.value= tbxpuau100t + tbxpuau200t + tbxpuau400t + tbxpuaa400t + tbxmc +tbxtaxtot;
+}
+
+
+
+</script>

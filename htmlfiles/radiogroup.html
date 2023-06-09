@@ -1,0 +1,61 @@
+<!--
+Example for Radio button with Multiple Groups
+-->
+
+Morning Session
+<br>
+<input
+type='radio'
+id='rdomsp'
+name='rdom'
+value='Morning Session Present'
+oninput="rdo_oninput();"
+/>Present
+
+<br>
+<input
+type='radio'
+id='rdomsa'
+name='rdom'
+value='Morning Session Absent'
+checked='checked'
+oninput="rdo_oninput();"
+/>Absent
+
+<hr size='1' color='blue'>
+
+Afternoon Session
+<br>
+<input
+type='radio'
+id='rdoasp'
+name='rdoa'
+value='Afternoon Session Present'
+oninput="rdo_oninput();"
+/>Present
+
+<br>
+<input
+type='radio'
+id='rdoasa'
+name='rdoa'
+value='Afternoon Session Absent'
+checked='checked'
+oninput="rdo_oninput();"
+/>Absent
+
+<br>
+<br>
+<div id="divop">
+Wait...
+</div>
+
+<script>
+function rdo_oninput(){
+var res='';
+res = rdomsp.checked ? rdomsp.value : rdomsa.value;
+res += '<br>';
+res += rdoasp.checked ? rdoasp.value : rdoasa.value;
+divop.innerHTML=res;
+}
+</script>
